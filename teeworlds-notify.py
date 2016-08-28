@@ -5,11 +5,11 @@ import re
 
 
 def onLeave(line, match):
-    return "[TEEWORLDS] Départ de {} :(".format(match.group(2))
+    return "TEEWORLDS — Départ de {} :(".format(match.group(2))
 
 
 def onJoin(line, match):
-    return "[TEEWORLDS] Arrivée de {} \o/".format(match.group(3))
+    return "TEEWORLDS — Arrivée de {} \o/".format(match.group(3))
 
 ACTIONS = [
     (re.compile("leave player='([0-9]+):([^']+)'"), onLeave),
@@ -22,4 +22,5 @@ if __name__ == '__main__':
             match = regexp.search(line)
             if match:
                 print(action(line, match))
+                sys.stdout.flush()
                 break
